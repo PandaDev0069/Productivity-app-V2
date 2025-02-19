@@ -9,7 +9,7 @@ This repository acts as a central hub for the Productivity App V2.
 - **Frontend (Next.js + TailwindCSS)** → [productivity-frontend](https://github.com/YOUR_USERNAME/productivity-frontend)
 
 ## 📄 Project Documentation
-For full development details, see the [Project Documentation](docs/).
+For full development details, see the [Project Documentation](https://pandadev0069.github.io/Productivity-app-V2/).
 
 ## 🎯 Features
 - ✅ Task Management

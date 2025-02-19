@@ -51,6 +51,7 @@ Productivity App V2 is a comprehensive productivity management system designed t
 ---
 
 ## 🛠️ Tech Stack
+```
 | Component  | Technology |
 |------------|------------|
 | **Frontend** | Next.js, TailwindCSS, React |
@@ -60,7 +61,7 @@ Productivity App V2 is a comprehensive productivity management system designed t
 | **Deployment** | Vercel (Frontend), Railway/DigitalOcean (Backend) |
 | **Caching** | Redis (Optional) |
 | **Testing** | Pytest (Backend), Jest (Frontend) |
-
+```
 ---
 
 ## 📜 API Endpoints (Backend)

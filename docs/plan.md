@@ -48,6 +48,12 @@
 ✅ Implement **task reminders & notifications**  
 ✅ **Tagging system** for tasks  
 ✅ **Recurring tasks** (daily, weekly, custom intervals)  
+✅ **Task Comments & Activity Logs** (Users can comment on tasks and track updates)  
+✅ **Task Deadline Alerts** (Email or in-app notifications for upcoming deadlines)  
+✅ **Task Dependencies** (Tasks can be linked so one starts after another is completed)  
+✅ **Task Categories & Labels** (Categorization of tasks like Work, Personal, Urgent, and labels for filtering)  
+✅ **Task Analytics & Reporting** (Tracking completed vs pending tasks, productivity insights)  
+
 
 ---
 

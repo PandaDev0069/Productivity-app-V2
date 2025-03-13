@@ -1,82 +1,155 @@
-# 🚀 Next Session Plan: User Settings & Preferences API Development
+# 🚀 Next Session Plan: Frontend Development (Next.js & Tailwind CSS)
 
-## **📌 Phase 1: Database & Schema Updates**
-✅ **Modify `models.py` to add:**  
-   - `language` → Preferred UI language.  
-   - `timezone` → User’s timezone (auto-synced if enabled).  
-   - `theme_preference` → Light or Dark mode selection.  
-   - `font_size` → Adjustable UI font size.  
-   - `high_contrast_mode` → Enable high contrast UI for accessibility.  
-   - `notification_preferences` → Store notification settings for tasks, Pomodoro, savings, calendar events.  
-   - `default_pomodoro_duration` → User’s preferred Pomodoro session length.  
-   - `default_task_priority` → Default priority for newly created tasks.  
+## **📌 Phase 1: Frontend Architecture & Setup**
+### **1.1. Define Project Folder Structure**
+✅ Organize `components/`, `pages/`, `hooks/`, `context/`, `api/` folders.  
+✅ Establish consistent naming conventions for components, routes, and state management.  
+✅ Ensure modular architecture for easy expansion.  
 
-✅ **Apply Alembic migration** to update the database.  
-✅ **Update `schemas/settings.py`** to match the new fields.  
+### **1.2. Implement Global Layout & Theme System**
+✅ Implement global navigation bar & sidebar layout.  
+✅ Create a theme provider to support light/dark mode (sync with backend preferences).  
+✅ Implement responsive design to support desktop, tablet, and mobile screens.  
+✅ Add a notification & alert system for user feedback (e.g., toast notifications).  
 
----
+### **1.3. Setup API Services and State Management**
+✅ Use **React Query** for API requests, caching, and background syncing.  
+✅ Use **Context API or Zustand** for global state management.  
+✅ Create API service files (`api/auth.js`, `api/tasks.js`, etc.) to centralize API calls.  
 
-## **📌 Phase 2: Update `utils.py` for Email Verification & Auto-Sync**
-✅ **Modify `utils.py` to include:**  
-   - **`send_email_verification(user, new_email)`** → Sends a verification email when changing the email.  
-   - **`detect_user_timezone(ip_address)`** → Uses a third-party API or system settings to auto-suggest timezone changes.  
+📌 **API Integration:**  
+✅ Test authentication API (`/auth/login`, `/auth/register`).  
+✅ Ensure API error handling works properly (invalid credentials, expired tokens, etc.).  
 
----
-
-## **📌 Phase 3: API Feature Implementation**
-✅ **Modify `api/settings.py`** to include:  
-
-### **User Account Settings**  
-   - **Update Email (with verification)** → `PUT /settings/email`  
-   - **Update Password** → `PUT /settings/password`  
-   - **Update Language & Timezone** → `PUT /settings/preferences`  
-
-### **Notification Preferences**  
-   - **Toggle email & in-app notifications per feature** → `PUT /settings/notifications`  
-   - **Fetch user notification preferences** → `GET /settings/notifications`  
-
-### **Default Pomodoro & Task Settings**  
-   - **Set Default Pomodoro Duration** → `PUT /settings/pomodoro`  
-   - **Set Default Task Priority** → `PUT /settings/tasks`  
-
-### **Accessibility Features**  
-   - **Enable/Disable High Contrast Mode** → `PUT /settings/accessibility`  
-   - **Adjust Font Size** → `PUT /settings/fontsize`  
+✅ **Now, the frontend structure is in place, and we are ready for authentication.**  
 
 ---
 
-## **📌 Phase 4: Interaction & Integration Flow**
-✅ **How Features Will Interact**  
+## **🚀 Phase 2: Implement Authentication System**
+### **2.1. Build Authentication UI**
+✅ Create **Login & Registration pages**.  
+✅ Implement **password reset & account recovery UI**.  
+✅ Ensure error handling (invalid login, missing fields, wrong password, etc.).  
 
-### **Email Verification**  
-   - When a user updates their email, a verification email is sent via `utils.py`.  
-   - The user clicks a confirmation link, updating their email.  
+📌 **API Integration:**  
+✅ Connect **Login & Registration pages** to **backend auth APIs (`/auth/login`, `/auth/register`)**.  
+✅ Implement **session handling with JWT tokens (store tokens in HTTP-only cookies).**  
+✅ Test login/logout flows with API responses.  
 
-### **Notification Preferences**  
-   - Users **choose which features** (tasks, Pomodoro, savings, calendar) send notifications.  
-   - The API **only sends notifications** if enabled.  
+### **2.2. Manage User Sessions & Logout Handling**
+✅ Implement **session timeout and automatic logout**.  
+✅ Create a **user context** (`context/AuthContext.js`) to manage global authentication state.  
+✅ Fetch **user details on login** to pre-populate settings and preferences.  
 
-### **Timezone Auto-Sync**  
-   - The system **detects timezone changes** when users log in.  
-   - Users can **confirm or override** suggested timezone changes.  
+📌 **API Integration:**  
+✅ Sync frontend with **`/auth/me`** to fetch user details on login.  
+✅ Implement **logout API call (`/auth/logout`)** when user signs out.  
+✅ Ensure **protected routes redirect users if not authenticated**.  
 
-### **Frontend Interaction**  
-   - The frontend will **fetch user settings** (`GET /settings/preferences`) and **apply them dynamically**.  
-   - Users can **update preferences**, and the frontend will **save them to the API**.  
-
----
-
-## **📌 Phase 5: Testing & Validation**
-✅ **Modify `test_settings.py` to include tests for:**  
-   - **Updating user settings & preferences.**  
-   - **Verifying email change process.**  
-   - **Testing notification toggling per feature.**  
-   - **Ensuring timezone detection works correctly.**  
-   - **Validating UI preferences (theme, contrast, font size).**  
+✅ **Now, users can authenticate, manage sessions, and access protected routes.**  
 
 ---
 
-### **🚀 Final Check: Next Session Ready**
-This plan covers all features for the **User Settings & Preferences API**, including **User Preferences, Email Verification, Notifications, and Accessibility Options**.  
-We will execute this step by step in the next session.
+## **🚀 Phase 3: Dashboard & Core Features UI**
+### **3.1. Build Dashboard Home UI**
+✅ Display user productivity stats (task completion, Pomodoro sessions, savings progress).  
+✅ Implement customizable widgets (users can add, remove, and rearrange widgets).  
+
+📌 **API Integration:**  
+✅ Fetch productivity stats from `/dashboard/stats`.  
+✅ Allow users to update dashboard preferences (`/dashboard/preferences`).  
+
+### **3.2. Task Management UI**
+✅ Create **task dashboard with status filtering** (completed, pending, in-progress).  
+✅ Implement **task creation & editing modal** with validation.  
+✅ Enable **drag & drop task sorting** for easy reordering.  
+✅ Implement **tag filtering system** for better organization.  
+
+📌 **API Integration:**  
+✅ Fetch tasks from `/tasks` and filter by status/tags (`/tasks?status=pending`).  
+✅ Allow task creation (`POST /tasks`), editing (`PUT /tasks/{id}`), and deletion (`DELETE /tasks/{id}`).  
+
+### **3.3. Notes UI**
+✅ Build **rich text editor with Markdown support**.  
+✅ Implement **view, edit, and delete notes** functionality.  
+✅ Create **version history UI** to track changes over time.  
+✅ Support **note folders & organization**.  
+✅ Add **reminders & notifications for important notes**.  
+
+📌 **API Integration:**  
+✅ Fetch notes from `/notes`.  
+✅ Implement **note creation (`POST /notes`), editing (`PUT /notes/{id}`), and version tracking**.  
+
+### **3.4. Expense Tracking UI**
+✅ Display **expense list with category filters** (e.g., groceries, rent, entertainment).  
+✅ Implement **expense creation form** with validation.  
+✅ Add **spending breakdown charts** (sync with backend analytics).  
+
+📌 **API Integration:**  
+✅ Fetch expenses from `/expenses`.  
+✅ Allow users to add (`POST /expenses`), edit (`PUT /expenses/{id}`), and delete (`DELETE /expenses/{id}`).  
+
+### **3.5. Goals UI**
+✅ Implement **goal progress tracking (progress bars, milestone completion)**.  
+✅ Display **deadline reminders & notifications**.  
+✅ Enable **task & habit linking to goals** for better tracking.  
+
+📌 **API Integration:**  
+✅ Fetch goals from `/goals`.  
+✅ Allow users to update progress (`PUT /goals/{id}/progress`).  
+✅ Support **goal completion & milestone updates**.  
+
+### **3.6. Pomodoro Timer UI**
+✅ Implement **start & stop Pomodoro sessions**.  
+✅ Display **break timer & session notifications**.  
+✅ Allow users to **link Pomodoro sessions to tasks** for focus tracking.  
+✅ Enable **streak tracking & session history**.  
+
+📌 **API Integration:**  
+✅ Fetch Pomodoro history from `/pomodoro`.  
+✅ Start a session (`POST /pomodoro/start`).  
+✅ Stop or pause a session (`PUT /pomodoro/{session_id}`).  
+
+### **3.7. Savings UI**
+✅ Create **savings progress tracker**.  
+✅ Display **multi-goal savings tracking** (e.g., emergency fund, travel, investments).  
+✅ Implement **graphical visualization of savings trends**.  
+
+📌 **API Integration:**  
+✅ Fetch savings data from `/savings`.  
+✅ Track contributions (`POST /savings/contribute`) and withdrawals (`POST /savings/withdraw`).  
+
+### **3.8. Full Calendar UI**
+✅ Implement **monthly, weekly, daily calendar views**.  
+✅ Enable **event creation & editing modal**.  
+✅ Sync **tasks & goals with calendar** for scheduling.  
+✅ Support **drag & drop event rescheduling**.  
+✅ Implement **custom color coding for event types**.  
+✅ Enable **recurring events & reminders**.  
+
+📌 **API Integration:**  
+✅ Fetch calendar events from `/calendar`.  
+✅ Create new events (`POST /calendar`).  
+✅ Reschedule events (`PUT /calendar/{event_id}/reschedule`).  
+
+### **3.9. User Profile & Settings UI**
+✅ Allow users to update profile details (username, profile picture).  
+✅ Manage **notification preferences** for tasks, Pomodoro, savings, calendar.  
+✅ Implement **auto-detect & update timezone settings**.  
+✅ Allow users to update Pomodoro & task settings.  
+✅ Support **dark mode & accessibility settings** (font size, high contrast).  
+
+📌 **API Integration:**  
+✅ Fetch user settings from `/settings/preferences`.  
+✅ Allow updates (`PUT /settings/preferences`).  
+✅ Support **profile picture uploads (`POST /settings/profile/upload-picture`)**.  
+
+✅ **Now, the core UI is built and connected to backend APIs.**  
+
+---
+
+## **🚀 Phase 4: Final Testing & Deployment**
+✅ Every feature’s API endpoints will be tested as it's developed.  
+✅ Real-time data sync will be verified after UI implementation.  
+✅ Deploy the frontend on **Vercel** for live testing.  
 
